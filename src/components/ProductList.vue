@@ -2,7 +2,7 @@
   <div class="container my-4">
     <h1 class="mb-4">List of Products</h1>
     <div class="text-end mb-3 mx-3">
-      <button class="btn btn-primary" @click="addProduct">Add New Product</button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</button>
     </div>
 
     <div class="table-responsive mx-3">
@@ -29,15 +29,15 @@
             <td>{{ product.barcode }}</td>
             <td>{{ product.status }}</td>
             <td>
-              <button @click="showProductDetails(product)" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="#viewModal">
+              <button @click="showProductDetails(product)" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="#viewProductModal">
                 <i class="fas fa-eye"></i>
               </button>
-              
-              <button @click="editProduct(product)" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editModal">
+
+              <button @click="editProduct(product)" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editProductModal">
                 <i class="fas fa-edit"></i>
               </button>
-              
-              <button @click="setProductToDelete(product)" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
+
+              <button @click="setProductToDelete(product)" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
                 <i class="fas fa-trash"></i>
               </button>
             </td>
@@ -45,11 +45,13 @@
         </tbody>
       </table>
     </div>
-    <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+
+    <!-- View Product Modal -->
+    <div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="viewModalLabel">Product Details</h5>
+            <h5 class="modal-title" id="viewProductModalLabel">Product Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -66,11 +68,13 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editModalLabel">Edit Product</h5>
+            <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -95,6 +99,14 @@
                 <label for="editCategory" class="form-label">Category</label>
                 <input type="text" v-model="selectedProduct.category" class="form-control" required>
               </div>
+              <div class="mb-3">
+                <label for="editBarcode" class="form-label">Barcode</label>
+                <input type="text" v-model="selectedProduct.barcode" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="editStatus" class="form-label">Status</label>
+                <input type="text" v-model="selectedProduct.status" class="form-control" required>
+              </div>
               <button type="submit" class="btn btn-success">Update Product</button>
             </form>
           </div>
@@ -102,11 +114,12 @@
       </div>
     </div>
 
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <!-- Delete Product Modal -->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+            <h5 class="modal-title" id="deleteProductModalLabel">Confirm Deletion</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -119,21 +132,90 @@
         </div>
       </div>
     </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="addNewProduct">
+              <div class="mb-3">
+                <label for="newProductName" class="form-label">Product Name</label>
+                <input type="text" v-model="newProduct.product_name" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newDescription" class="form-label">Description</label>
+                <input type="text" v-model="newProduct.description" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newPrice" class="form-label">Price</label>
+                <input type="number" v-model="newProduct.price" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newStock" class="form-label">Stock</label>
+                <input type="number" v-model="newProduct.stock" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newCategory" class="form-label">Category</label>
+                <input type="text" v-model="newProduct.category" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newBarcode" class="form-label">Barcode</label>
+                <input type="text" v-model="newProduct.barcode" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newStatus" class="form-label">Status</label>
+                <input type="text" v-model="newProduct.status" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const products = ref([
-  { id: 1, product_name: "Product 001", description: "High-quality product.", price: 100, stock: 200, category: "Electronics", barcode: "1234567890", status: "Actif" },
-  { id: 2, product_name: "Product 002", description: "Affordable product.", price: 50, stock: 100, category: "Home Appliances", barcode: "1234567890", status: "Inactif" },
-  { id: 3, product_name: "Product 003", description: "Durable product.", price: 75, stock: 50, category: "Sports", barcode: "1234567890", status: "Actif" },
+  {
+    id: 1,
+    product_name: 'Product 1',
+    description: 'Description of product 1',
+    price: 100,
+    stock: 10,
+    category: 'Category A',
+    barcode: '1234567890',
+    status: 'Actif'
+  },
+  {
+    id: 2,
+    product_name: 'Product 2',
+    description: 'Description of product 2',
+    price: 150,
+    stock: 5,
+    category: 'Category B',
+    barcode: '0987654321',
+    status: 'Inactif'
+  }
 ])
 
 const selectedProduct = ref({})
+const newProduct = ref({
+  product_name: '',
+  description: '',
+  price: 0,
+  stock: 0,
+  category: '',
+  barcode: '',
+  status: ''
+})
 
 const showProductDetails = (product) => {
   selectedProduct.value = { ...product }
@@ -144,7 +226,10 @@ const editProduct = (product) => {
 }
 
 const updateProduct = () => {
-  console.log('Product updated:', selectedProduct.value)
+  const index = products.value.findIndex(p => p.id === selectedProduct.value.id)
+  if (index !== -1) {
+    products.value[index] = { ...selectedProduct.value }
+  }
 }
 
 const setProductToDelete = (product) => {
@@ -154,4 +239,21 @@ const setProductToDelete = (product) => {
 const deleteProduct = (id) => {
   products.value = products.value.filter(product => product.id !== id)
 }
+
+const addNewProduct = () => {
+  newProduct.value.id = products.value.length + 1
+  products.value.push({ ...newProduct.value })
+  newProduct.value = {
+    product_name: '',
+    description: '',
+    price: 0,
+    stock: 0,
+    category: '',
+    barcode: '',
+    status: ''
+  }
+}
 </script>
+
+<style scoped>
+</style>
