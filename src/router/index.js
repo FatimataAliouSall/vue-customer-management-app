@@ -20,6 +20,7 @@ const routes = [
   { path: '/orders', component: OrderList },
   { path: '/orders/new', component: OrderForm },
   { path: '/orders/:id', component: OrderForm },
+  { path: '/order-form/:id?', component: OrderForm, name: 'orderForm' }
 ];
 
 const router = createRouter({
