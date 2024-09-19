@@ -2,7 +2,7 @@
   <div class="container my-4">
     <h1 class="mb-4">List of Customers</h1>
     <div class="text-end mb-3 mx-3">
-      <button class="btn btn-primary" @click="addCustomer">Add New Customer</button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add New Customer</button>
     </div>
 
     <div class="table-responsive mx-3">
@@ -26,11 +26,11 @@
               <button @click="showCustomerDetails(customer)" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="#viewModal">
                 <i class="fas fa-eye"></i>
               </button>
-              
+
               <button @click="editCustomer(customer)" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editModal">
                 <i class="fas fa-edit"></i>
               </button>
-              
+
               <button @click="setCustomerToDelete(customer)" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 <i class="fas fa-trash"></i>
               </button>
@@ -112,6 +112,39 @@
         </div>
       </div>
     </div>
+
+    <!-- Add Customer Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addModalLabel">Add New Customer</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="addNewCustomer">
+              <div class="mb-3">
+                <label for="newCustomerName" class="form-label">Name</label>
+                <input type="text" v-model="newCustomer.name" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newAddress" class="form-label">Address</label>
+                <input type="text" v-model="newCustomer.address" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newEmail" class="form-label">Email</label>
+                <input type="email" v-model="newCustomer.email" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="newPhone" class="form-label">Phone</label>
+                <input type="text" v-model="newCustomer.phone" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Customer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -125,6 +158,12 @@ const customers = ref([
 ])
 
 const selectedCustomer = ref({})
+const newCustomer = ref({
+  name: '',
+  address: '',
+  email: '',
+  phone: ''
+})
 
 const showCustomerDetails = (customer) => {
   selectedCustomer.value = { ...customer }
@@ -144,5 +183,12 @@ const setCustomerToDelete = (customer) => {
 
 const deleteCustomer = (id) => {
   customers.value = customers.value.filter(customer => customer.id !== id)
+}
+
+const addNewCustomer = () => {
+  const newId = customers.value.length + 1
+  customers.value.push({ ...newCustomer.value, id: newId })
+  newCustomer.value = { name: '', address: '', email: '', phone: '' }
+  console.log('New customer added:', newCustomer.value)
 }
 </script>
