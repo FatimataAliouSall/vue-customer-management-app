@@ -20,31 +20,28 @@ L'application a été conçue pour améliorer l'expérience utilisateur et assur
 
 ## Prérequis
 - **Node.js** version 14+ doit être installé sur votre machine.
-- Un gestionnaire de paquets comme **npm** .
+- Un gestionnaire de paquets comme **npm**.
 
 ## Installation
 
 1. Cloner le projet
 
     ```bash
-        git clone https://github.com/FatimataAliouSall/vue-customer-management-app.git
-        cd vue-customer-management-app
-        
-     ``` 
+    git clone https://github.com/FatimataAliouSall/vue-customer-management-app.git
+    cd vue-customer-management-app
+    ``` 
 
 2. Installer les dépendances    
 
     ```bash
-        npm install
-        
-     ``` 
+    npm install
+    ``` 
 
 3. Lancer le projet en mode développement 
 
     ```bash
-       npm run dev
-        
-     ``` 
+    npm run dev
+    ``` 
 
 ## Déploiement
 
@@ -56,16 +53,17 @@ Inscrivez-vous sur Vercel et connectez votre dépôt GitHub ou GitLab.
 
 2. Lancer le déploiement
 
- - Une fois le dépôt connecté à Vercel, choisissez la branche à déployer (par défaut, la branche main).
- - Cliquez sur Deploy.
+- Une fois le dépôt connecté à Vercel, choisissez la branche à déployer (par défaut, la branche main).
+- Cliquez sur Deploy.
 
 3. Accéder à l'application
 
-Une fois déployée, vous pouvez accéder à l'application à l'URL fournie par Vercel.
+Une fois déployée, vous pouvez accéder à l'application à l'URL suivante :
+
+[https://vue-customer-management-app.vercel.app/customers](https://vue-customer-management-app.vercel.app/customers)
 
 ## Auteurs
 
 Fatimata Aliou Sall - Développeuse Frontend pour ABC Corporation.
 
 [Fatimata Aliou Sall](https://github.com/FatimataAliouSall)
-
