@@ -78,7 +78,9 @@
   
   // Liste des commandes
   const orders = ref([
-    { id: 1, date: "2024-07-26", customer: "Jane Smith", delivery_address: "456 Oak St, Los Angeles, CA", track_number: "TN002", status: "Delivered" }
+    { id: 1, date: "2024-07-26", customer: "John Doe", delivery_address: "4123 Main St, New York, NY", track_number: "TN001", status: "Delivered" },
+    { id: 2, date: "2023-02-22", customer: "Jane Smith", delivery_address: "456 Oak St, Los Angeles, CA", track_number: "TN002", status: "Shipped" },
+    { id: 3, date: "2022-04-27", customer: "Alice Martin", delivery_address: "789 Pine St, Chicago, IL", track_number: "TN003", status: "Processing" }
   ])
   
   const selectedOrder = ref(null)
