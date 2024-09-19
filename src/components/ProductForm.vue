@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container my-4">
       <h2>{{ isEditing ? "Edit Product" : "Add New Product" }}</h2>
       <form @submit.prevent="saveProduct" class="mx-auto" style="max-width: 600px;">
@@ -36,53 +36,53 @@
         <button type="submit" class="btn btn-success">{{ isEditing ? "Update" : "Add" }} Product</button>
       </form>
     </div>
-  </template>
+  </template> -->
   
   <script setup>
-  import { ref, onMounted } from 'vue'
-  import { useRouter, useRoute } from 'vue-router'
+  // import { ref, onMounted } from 'vue'
+  // import { useRouter, useRoute } from 'vue-router'
   
-  const router = useRouter()
-  const route = useRoute()
+  // const router = useRouter()
+  // const route = useRoute()
   
-  const product = ref({
-    product_name: '',
-    description: '',
-    price: 0,
-    stock: 0,
-    category: '',
-    barcode: '',
-    status: 'Actif'
-  })
+  // const product = ref({
+  //   product_name: '',
+  //   description: '',
+  //   price: 0,
+  //   stock: 0,
+  //   category: '',
+  //   barcode: '',
+  //   status: 'Actif'
+  // })
   
-  const isEditing = ref(false)
+  // const isEditing = ref(false)
   
-  const products = ref([
-    { id: 1, product_name: "Product 001", description: "High-quality product.", price: 100, stock: 200, category: "Electronics", barcode: "1234567890", status: "Actif" },
-    { id: 2, product_name: "Product 002", description: "Affordable product.", price: 50, stock: 100, category: "Home Appliances", barcode: "1234567890", status: "Inactif" },
-    { id: 3, product_name: "Product 003", description: "Durable product.", price: 75, stock: 50, category: "Sports", barcode: "1234567890", status: "Actif" },
-  ])
+  // // const products = ref([
+  // //   { id: 1, product_name: "Product 001", description: "High-quality product.", price: 100, stock: 200, category: "Electronics", barcode: "1234567890", status: "Actif" },
+  // //   { id: 2, product_name: "Product 002", description: "Affordable product.", price: 50, stock: 100, category: "Home Appliances", barcode: "1234567890", status: "Inactif" },
+  // //   { id: 3, product_name: "Product 003", description: "Durable product.", price: 75, stock: 50, category: "Sports", barcode: "1234567890", status: "Actif" },
+  // // ])
   
-  onMounted(() => {
-    const id = route.params.id
-    if (id) {
-      const existingProduct = products.value.find(p => p.id === parseInt(id))
-      if (existingProduct) {
-        product.value = { ...existingProduct }
-        isEditing.value = true
-      }
-    }
-  })
+  // // onMounted(() => {
+  // //   const id = route.params.id
+  // //   if (id) {
+  // //     const existingProduct = products.value.find(p => p.id === parseInt(id))
+  // //     if (existingProduct) {
+  // //       product.value = { ...existingProduct }
+  // //       isEditing.value = true
+  // //     }
+  // //   }
+  // // })
   
-  const saveProduct = () => {
-    if (isEditing.value) {
-      console.log('Updating product:', product.value)
-    } else {
-      product.value.id = products.value.length + 1
-      products.value.push({ ...product.value })
-      console.log('Adding new product:', product.value)
-    }
-    router.push('/products')
-  }
+  // const saveProduct = () => {
+  //   if (isEditing.value) {
+  //     console.log('Updating product:', product.value)
+  //   } else {
+  //     product.value.id = products.value.length + 1
+  //     products.value.push({ ...product.value })
+  //     console.log('Adding new product:', product.value)
+  //   }
+  //   router.push('/products')
+  // }
   </script>
   
