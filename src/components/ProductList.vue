@@ -6,7 +6,7 @@
     </div>
 
     <div class="table-responsive mx-3">
-      <table class="table table-striped">
+      <table class="table table-striped table-bordered">
         <thead>
           <tr>
             <th>Product Name</th>
