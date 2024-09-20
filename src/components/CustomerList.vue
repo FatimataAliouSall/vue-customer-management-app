@@ -77,8 +77,9 @@
               </div>
               <div class="mb-3">
                 <label for="editAddress" class="form-label">Address</label>
-                <input type="text" v-model="selectedCustomer.address" class="form-control" required>
+                <textarea id="editAddress" v-model="selectedCustomer.address" class="form-control" rows="3" required></textarea>
               </div>
+
               <div class="mb-3">
                 <label for="editEmail" class="form-label">Email</label>
                 <input type="email" v-model="selectedCustomer.email" class="form-control" required>
@@ -128,9 +129,10 @@
                 <input type="text" v-model="newCustomer.name" class="form-control" required>
               </div>
               <div class="mb-3">
-                <label for="newAddress" class="form-label">Address</label>
-                <input type="text" v-model="newCustomer.address" class="form-control" required>
+                <label for="editAddress" class="form-label">Address</label>
+                <textarea id="editAddress" v-model="selectedCustomer.address" class="form-control" rows="3" required></textarea>
               </div>
+
               <div class="mb-3">
                 <label for="newEmail" class="form-label">Email</label>
                 <input type="email" v-model="newCustomer.email" class="form-control" required>
