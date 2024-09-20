@@ -31,8 +31,14 @@
             </div>
             <div class="mb-3">
               <label for="status" class="form-label">Status</label>
-              <input type="text" id="status" v-model="order.status" class="form-control w-100" required />
+              <select id="status" v-model="order.status" class="form-select w-100" required>
+                <option value="" disabled>Select Status</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Processing">Processing</option>
+              </select>
             </div>
+
           </div>
         </div>
   
