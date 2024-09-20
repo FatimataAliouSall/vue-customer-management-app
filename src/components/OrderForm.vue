@@ -1,10 +1,13 @@
 <template>
+  <div class="container my-4">
+
+    <h1>{{ isEditing ? 'Edit Order' : 'Create New Order' }}</h1>
+    
     <div class="container my-4">
       <form @submit.prevent="saveOrder">
         <div class="d-flex justify-content-end mb-3">
-          <!-- Button to navigate to Orders List -->
           <button type="button" class="btn btn-secondary me-2" @click="goHome">Orders List</button>
-          <!-- Submit button for the form -->
+          
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
   
@@ -78,18 +81,19 @@
         </div>
       </form>
     </div>
-  </template>
+
+  </div>  
+    
+</template>
   
   
-  <script setup>
+<script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-// Initialize Vue Router
 const router = useRouter()
 const route = useRoute()
 
-// Order object with initial values
 const order = ref({
   date: '',
   customer: '',
@@ -98,15 +102,12 @@ const order = ref({
   status: ''
 })
 
-// Boolean to check if editing an existing order
 const isEditing = ref(false)
 
-// Sample data for existing orders
 const orders = ref([
   { id: 1, date: "2024-07-26", customer: "Jane Smith", delivery_address: "456 Oak St, Los Angeles, CA", track_number: "TN002", status: "Delivered" }
 ])
 
-// Fetch order details if editing
 onMounted(() => {
   const id = route.params.id
   if (id) {
@@ -118,7 +119,7 @@ onMounted(() => {
   }
 })
 
-// Save or update order
+
 const saveOrder = () => {
   if (isEditing.value) {
     console.log('Updating order:', order.value)
@@ -130,25 +131,27 @@ const saveOrder = () => {
   router.push('/orders')
 }
 
-// Order details (items in the order)
 const orderDetails = ref([
   { product: '', quantity: 1, price: 0 }
 ])
 
-// List of products (example)
 const products = ['Product A', 'Product B', 'Product C']
 
-// Add a new detail to the order
 const addDetail = () => {
   orderDetails.value.push({ product: '', quantity: 1, price: 0 })
 }
 
-// Remove a detail from the order
+
 const removeDetail = (index) => {
-  orderDetails.value.splice(index, 1)
+  if (orderDetails.value.length > 1) {
+    orderDetails.value.splice(index, 1)
+  } else {
+    console.log('Cannot remove the last detail line.')
+    alert('At least one detail line is required.')
+  }
 }
 
-// Redirect to orders list
+
 const goHome = () => {
   router.push('/orders')
 }
