@@ -4,7 +4,8 @@ import CustomerForm from '@/components/CustomerForm.vue';
 import ProductList from '@/components/ProductList.vue';  
 import ProductForm from '@/components/ProductForm.vue';  
 import OrderList from '@/components/OrderList.vue';     
-import OrderForm from '@/components/OrderForm.vue';      
+import OrderForm from '@/components/OrderForm.vue';  
+import OrderPreview from '@/components/OrderPreview.vue';    
 
 const routes = [
   { path: '/customers', component: CustomerList },
@@ -20,7 +21,9 @@ const routes = [
   { path: '/orders', component: OrderList },
   { path: '/orders/new', component: OrderForm },
   { path: '/orders/:id', component: OrderForm },
-  { path: '/order-form/:id?', component: OrderForm, name: 'orderForm' }
+  { path: '/order-form/:id?', component: OrderForm, name: 'orderForm' },
+  { path: '/orders/:id/preview', component: OrderPreview }
+
 ];
 
 const router = createRouter({
