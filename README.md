@@ -60,7 +60,7 @@ Inscrivez-vous sur Vercel et connectez votre dépôt GitHub ou GitLab.
 
 Une fois déployée, vous pouvez accéder à l'application à l'URL suivante :
 
-[https://vue-customer-management-app.vercel.app/customers](https://vue-customer-management-app.vercel.app/customers)
+[https://vue-customer-management-app.vercel.app](https://vue-customer-management-app.vercel.app)
 
 ## Auteurs
 
