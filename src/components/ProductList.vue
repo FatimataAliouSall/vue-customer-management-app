@@ -145,15 +145,16 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+           
+
+            
             <form @submit.prevent="addNewProduct">
+               <div class="classe">
               <div class="mb-3">
                 <label for="newProductName" class="form-label">Product Name</label>
                 <input type="text" v-model="newProduct.product_name" class="form-control" required>
               </div>
-              <div class="mb-3">
-                <label for="newDescription" class="form-label">Description</label>
-                <input type="text" v-model="newProduct.description" class="form-control" required>
-              </div>
+              
               <div class="mb-3">
                 <label for="newPrice" class="form-label">Price</label>
                 <input type="number" v-model="newProduct.price" class="form-control" required>
@@ -177,9 +178,14 @@
                   <option value="Inactif">Inactif</option>
                 </select>
               </div>
-
+                </div>
+                <div class="mb-3">
+                <label for="newDescription" class="form-label">Description</label>
+                <textarea type="text" v-model="newProduct.description" class="form-control" required></textarea>
+              </div>
               <button type="submit" class="btn btn-primary">Add Product</button>
             </form>
+          
           </div>
         </div>
       </div>
@@ -265,4 +271,10 @@ const addNewProduct = () => {
 
 
 <style scoped>
+.classe{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  column-gap: 20px;
+}
 </style>
