@@ -105,7 +105,10 @@
               </div>
               <div class="mb-3">
                 <label for="editStatus" class="form-label">Status</label>
-                <input type="text" v-model="selectedProduct.status" class="form-control" required>
+                <select v-model="selectedProduct.status" class="form-select" required>
+                  <option value="Actif">Actif</option>
+                  <option value="Inactif">Inactif</option>
+                </select>
               </div>
               <button type="submit" class="btn btn-success">Update Product</button>
             </form>
@@ -169,8 +172,12 @@
               </div>
               <div class="mb-3">
                 <label for="newStatus" class="form-label">Status</label>
-                <input type="text" v-model="newProduct.status" class="form-control" required>
+                <select v-model="newProduct.status" class="form-select" required>
+                  <option value="Actif">Actif</option>
+                  <option value="Inactif">Inactif</option>
+                </select>
               </div>
+
               <button type="submit" class="btn btn-primary">Add Product</button>
             </form>
           </div>
@@ -214,7 +221,7 @@ const newProduct = ref({
   stock: 0,
   category: '',
   barcode: '',
-  status: ''
+  status: 'Actif' 
 })
 
 const showProductDetails = (product) => {
@@ -241,8 +248,9 @@ const deleteProduct = (id) => {
 }
 
 const addNewProduct = () => {
-  newProduct.value.id = products.value.length + 1
-  products.value.push({ ...newProduct.value })
+  const newId = products.value.length ? Math.max(...products.value.map(p => p.id)) + 1 : 1;
+  newProduct.value.id = newId;
+  products.value.push({ ...newProduct.value });
   newProduct.value = {
     product_name: '',
     description: '',
@@ -250,10 +258,11 @@ const addNewProduct = () => {
     stock: 0,
     category: '',
     barcode: '',
-    status: ''
+    status: 'Actif' 
   }
 }
 </script>
+
 
 <style scoped>
 </style>
