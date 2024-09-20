@@ -7,9 +7,10 @@
           <input type="text" id="name" v-model="customer.name" class="form-control" required />
         </div>
         <div class="mb-3">
-          <label for="address" class="form-label">Address</label>
-          <input type="text" id="address" v-model="customer.address" class="form-control" required />
+          <label for="editAddress" class="form-label">Address</label>
+          <textarea id="editAddress" v-model="selectedCustomer.address" class="form-control" rows="3" required></textarea>
         </div>
+
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" v-model="customer.email" class="form-control" required />
