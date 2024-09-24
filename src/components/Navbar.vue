@@ -1,3 +1,6 @@
+
+
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -16,31 +19,31 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link
+            <RouterLink
+              :class="['nav-link text-dark', { active: activeRoute === '/customers' }]"
               to="/customers"
-              class="nav-link text-dark"
-              active-class="active"
+              @click="setActiveRoute('/customers')"
             >
               <i class="fas fa-users"></i> Customers
-            </router-link>
+            </RouterLink>
           </li>
           <li class="nav-item">
-            <router-link
+            <RouterLink
+              :class="['nav-link text-dark', { active: activeRoute === '/products' }]"
               to="/products"
-              class="nav-link text-dark"
-              active-class="active"
+              @click="setActiveRoute('/products')"
             >
               <i class="fas fa-boxes"></i> Products
-            </router-link>
+            </RouterLink>
           </li>
           <li class="nav-item">
-            <router-link
+            <RouterLink
+              :class="['nav-link text-dark', { active: activeRoute === '/orders' }]"
               to="/orders"
-              class="nav-link text-dark"
-              active-class="active"
+              @click="setActiveRoute('/orders')"
             >
               <i class="fas fa-shopping-cart"></i> Orders
-            </router-link>
+            </RouterLink>
           </li>
         </ul>
       </div>
@@ -49,11 +52,26 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRoute } from "vue-router";
 
+const activeRoute = ref(""); 
+const route = useRoute(); 
+
+const setActiveRoute = (path) => {
+  activeRoute.value = path;
+};
+
+activeRoute.value = route.path;
 </script>
 
 <style scoped>
+.nav-link.active {
+  color: #007bff !important;
+}
+
 .nav-link:hover {
-  color: #007bff !important; 
+  color: #007bff !important;
 }
 </style>
+
