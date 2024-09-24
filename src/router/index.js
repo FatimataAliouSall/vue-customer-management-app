@@ -8,22 +8,64 @@ import OrderForm from '@/components/OrderForm.vue';
 import OrderPreview from '@/components/OrderPreview.vue';    
 
 const routes = [
-  { path: '/customers', component: CustomerList },
-  { path: '/customers/new', component: CustomerForm },
-  { path: '/customers/:id', component: CustomerForm },
-  
-  // Routes pour Products
-  { path: '/products', component: ProductList },
-  { path: '/products/new', component: ProductForm },
-  { path: '/products/:id', component: ProductForm },
-  
-  // Routes pour Orders
-  { path: '/orders', component: OrderList },
-  { path: '/orders/new', component: OrderForm },
-  { path: '/orders/:id', component: OrderForm },
-  { path: '/order-form/:id?', component: OrderForm, name: 'orderForm' },
-  { path: '/orders/:id/preview', component: OrderPreview }
 
+  { path: '/', redirect: '/customers' },
+
+  // Routes pour Customers
+  { 
+    path: '/customers', 
+    component: CustomerList,
+    name: 'customerList'
+  },
+  { 
+    path: '/customers/new', 
+    component: CustomerForm,
+    name: 'customerNew'
+  },
+  { 
+    path: '/customers/:id', 
+    component: CustomerForm, 
+    name: 'customerEdit'
+  },
+
+  // Routes pour Products
+  { 
+    path: '/products', 
+    component: ProductList,
+    name: 'productList'
+  },
+  { 
+    path: '/products/new', 
+    component: ProductForm,
+    name: 'productNew'
+  },
+  { 
+    path: '/products/:id', 
+    component: ProductForm,
+    name: 'productEdit'
+  },
+
+  // Routes pour Orders
+  { 
+    path: '/orders', 
+    component: OrderList,
+    name: 'orderList'
+  },
+  { 
+    path: '/orders/new', 
+    component: OrderForm,
+    name: 'orderNew'
+  },
+  { 
+    path: '/orders/:id/edit', 
+    component: OrderForm,
+    name: 'orderEdit'
+  },
+  { 
+    path: '/orders/:id/preview', 
+    component: OrderPreview,
+    name: 'orderPreview'
+  }
 ];
 
 const router = createRouter({
