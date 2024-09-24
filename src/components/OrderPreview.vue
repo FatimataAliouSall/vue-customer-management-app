@@ -1,36 +1,38 @@
 <template>
-  <div>
+  <div class="container my-4">
     <h2>Order Preview</h2>
 
-    <div class="classe mx-3">
-      <div class="mb-3">
-        <label for="date" class="form-label"><strong>Date:</strong></label>
-        <input type="date" id="date" v-model="order.date" class="form-control" disabled />
+    <div class="d-flex gap-3 bg-light p-3">
+      <div class="flex-fill">
+        <div class="mb-3">
+          <label for="date" class="form-label"><strong>Date:</strong></label>
+          <input type="date" id="date" v-model="order.date" class="form-control w-100" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="customer" class="form-label"><strong>Customer:</strong></label>
+          <input type="text" id="customer" v-model="order.customer" class="form-control w-100" disabled />
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="customer" class="form-label"><strong>Customer:</strong></label>
-        <input type="text" id="customer" v-model="order.customer" class="form-control" disabled />
-      </div>
-
-      <div class="mb-3">
-        <label for="delivery_address" class="form-label"><strong>Delivery Address:</strong></label>
-        <input type="text" id="delivery_address" v-model="order.delivery_address" class="form-control" disabled />
-      </div>
-
-      <div class="mb-3">
-        <label for="track_number" class="form-label"><strong>Tracking Number:</strong></label>
-        <input type="text" id="track_number" v-model="order.track_number" class="form-control" disabled />
-      </div>
-
-      <div class="mb-3">
-        <label for="status" class="form-label"><strong>Status:</strong></label>
-        <input type="text" id="status" v-model="order.status" class="form-control" disabled />
+      <div class="flex-fill">
+        <div class="mb-3">
+          <label for="delivery_address" class="form-label"><strong>Delivery Address:</strong></label>
+          <input type="text" id="delivery_address" v-model="order.delivery_address" class="form-control w-100" disabled />
+        </div>
+        <div class="mb-3">
+          <label for="track_number" class="form-label"><strong>Tracking Number:</strong></label>
+          <input type="text" id="track_number" v-model="order.track_number" class="form-control w-100" disabled />
+        </div>
+        <div class="mb-3">
+          <label for="status" class="form-label"><strong>Status:</strong></label>
+          <input type="text" id="status" v-model="order.status" class="form-control w-100" disabled />
+        </div>
       </div>
     </div>
 
     <h3>Order Details</h3>
-    <table class="table mx-3">
+    <table class="table">
       <thead>
         <tr>
           <th>Product</th>
@@ -40,14 +42,20 @@
       </thead>
       <tbody>
         <tr v-for="(detail, index) in orderDetails" :key="index">
-          <td><input type="text" v-model="detail.product" class="form-control" disabled /></td>
-          <td><input type="number" v-model="detail.quantity" class="form-control" disabled /></td>
-          <td><input type="number" v-model="detail.price" class="form-control" disabled /></td>
+          <td>
+            <input type="text" v-model="detail.product" class="form-control" disabled />
+          </td>
+          <td>
+            <input type="number" v-model="detail.quantity" class="form-control" disabled />
+          </td>
+          <td>
+            <input type="number" v-model="detail.price" class="form-control" disabled />
+          </td>
         </tr>
       </tbody>
     </table>
 
-    <button @click="goBack" class="btn btn-secondary mt-3 mx-3">Back to Orders</button>
+    <button @click="goBack" class="btn btn-secondary mt-3">Back to Orders</button>
   </div>
 </template>
 
@@ -82,12 +90,8 @@ const goBack = () => {
 </script>
 
 <style scoped>
-.classe {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  column-gap: 20px;
-  row-gap: 20px;
+.container {
+  margin-top: 2rem;
 }
 
 .mx-3 {
