@@ -47,75 +47,102 @@
     </div>
 
     <!-- View Product Modal -->
-    <div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="viewProductModalLabel">Product Details</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewProductModalLabel">Product Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="classe">
+          <div class="mb-3">
+            <label for="viewProductName" class="form-label">Product Name</label>
+            <input type="text" v-model="selectedProduct.product_name" class="form-control" disabled>
           </div>
-          <div class="modal-body">
-            <p><strong>Product Name:</strong> {{ selectedProduct.product_name }}</p>
-            <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
-            <p><strong>Price:</strong> {{ selectedProduct.price }}</p>
-            <p><strong>Stock:</strong> {{ selectedProduct.stock }}</p>
-            <p><strong>Category:</strong> {{ selectedProduct.category }}</p>
-            <p><strong>Status:</strong> {{ selectedProduct.status }}</p>
+          <div class="mb-3">
+            <label for="viewPrice" class="form-label">Price</label>
+            <input type="number" v-model="selectedProduct.price" class="form-control" disabled>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div class="mb-3">
+            <label for="viewStock" class="form-label">Stock</label>
+            <input type="number" v-model="selectedProduct.stock" class="form-control" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="viewCategory" class="form-label">Category</label>
+            <input type="text" v-model="selectedProduct.category" class="form-control" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="viewBarcode" class="form-label">Barcode</label>
+            <input type="text" v-model="selectedProduct.barcode" class="form-control" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="viewStatus" class="form-label">Status</label>
+            <input type="text" v-model="selectedProduct.status" class="form-control" disabled>
           </div>
         </div>
+        <div class="mb-3">
+          <label for="viewDescription" class="form-label">Description</label>
+          <textarea v-model="selectedProduct.description" class="form-control" disabled></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
 
+    
     <!-- Edit Product Modal -->
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form @submit.prevent="updateProduct">
+          <div class="classe">
+            <div class="mb-3">
+              <label for="editProductName" class="form-label">Product Name</label>
+              <input type="text" v-model="selectedProduct.product_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="editPrice" class="form-label">Price</label>
+              <input type="number" v-model="selectedProduct.price" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="editStock" class="form-label">Stock</label>
+              <input type="number" v-model="selectedProduct.stock" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="editCategory" class="form-label">Category</label>
+              <input type="text" v-model="selectedProduct.category" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="editBarcode" class="form-label">Barcode</label>
+              <input type="text" v-model="selectedProduct.barcode" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="editStatus" class="form-label">Status</label>
+              <select v-model="selectedProduct.status" class="form-select" required>
+                <option value="Actif">Actif</option>
+                <option value="Inactif">Inactif</option>
+              </select>
+            </div>
           </div>
-          <div class="modal-body">
-            <form @submit.prevent="updateProduct">
-              <div class="mb-3">
-                <label for="editProductName" class="form-label">Product Name</label>
-                <input type="text" v-model="selectedProduct.product_name" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="editDescription" class="form-label">Description</label>
-                <input type="text" v-model="selectedProduct.description" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="editPrice" class="form-label">Price</label>
-                <input type="number" v-model="selectedProduct.price" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="editStock" class="form-label">Stock</label>
-                <input type="number" v-model="selectedProduct.stock" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="editCategory" class="form-label">Category</label>
-                <input type="text" v-model="selectedProduct.category" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="editBarcode" class="form-label">Barcode</label>
-                <input type="text" v-model="selectedProduct.barcode" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="editStatus" class="form-label">Status</label>
-                <select v-model="selectedProduct.status" class="form-select" required>
-                  <option value="Actif">Actif</option>
-                  <option value="Inactif">Inactif</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-success">Update Product</button>
-            </form>
+          <div class="mb-3">
+            <label for="editDescription" class="form-label">Description</label>
+            <textarea v-model="selectedProduct.description" class="form-control" required></textarea>
           </div>
-        </div>
+          <button type="submit" class="btn btn-success">Update Product</button>
+        </form>
       </div>
     </div>
+  </div>
+</div>
 
     <!-- Delete Product Modal -->
     <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
