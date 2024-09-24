@@ -31,9 +31,9 @@
                 <i class="fas fa-eye"></i> 
               </router-link>
 
-              <button @click="navigateToOrderForm(order.id)" class="btn btn-warning btn-sm me-2">
+              <router-link :to="`/orders/${order.id}/edit`" class="btn btn-warning btn-sm me-2">
                 <i class="fas fa-edit"></i> 
-              </button>
+              </router-link>
 
               <button @click="setOrderToDelete(order)" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 <i class="fas fa-trash"></i>
@@ -71,7 +71,6 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-// Liste des commandes
 const orders = ref([
   { id: 1, date: "2024-07-26", customer: "John Doe", delivery_address: "4123 Main St, New York, NY", track_number: "TN001", status: "Delivered" },
   { id: 2, date: "2023-02-22", customer: "Jane Smith", delivery_address: "456 Oak St, Los Angeles, CA", track_number: "TN002", status: "Shipped" },
@@ -80,22 +79,13 @@ const orders = ref([
 
 const selectedOrder = ref(null)
 
-const viewOrder = (order) => {
-  selectedOrder.value = { ...order }
-  console.log('Viewing order:', order)
+const navigateToOrderForm = () => {
+  router.push({ name: 'orderNew' }); 
 }
-
-// Fonction pour naviguer vers le formulaire d'édition ou de création de commande
-const navigateToOrderForm = (id = null) => {
-  router.push({ name: 'orderForm', params: { id } })
-}
-
-// Fonction pour préparer la suppression d'une commande
 const setOrderToDelete = (order) => {
   selectedOrder.value = { ...order }
 }
 
-// Fonction pour supprimer la commande sélectionnée
 const deleteOrder = () => {
   orders.value = orders.value.filter(order => order.id !== selectedOrder.value.id)
   console.log('Order deleted:', selectedOrder.value)
